@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h1 class="h4 mb-3">Add New Employee</h1>
+        <form method="post">
+          <div class="mb-3">
+            <label for="name" class="form-label">Employee Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              value="{{ form.name }}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              value="{{ form.email }}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="department" class="form-label">Department</label>
+            <input
+              type="text"
+              class="form-control"
+              id="department"
+              name="department"
+              value="{{ form.department }}"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="security_level" class="form-label">Security Level</label>
+            <select
+              id="security_level"
+              name="security_level"
+              class="form-select"
+              required
+            >
+              <option value="">Select...</option>
+              <option value="1" {% if form.security_level == 1 %}selected{% endif %}>
+                1 - Admin
+              </option>
+              <option value="2" {% if form.security_level == 2 %}selected{% endif %}>
+                2 - Manager
+              </option>
+              <option value="3" {% if form.security_level == 3 %}selected{% endif %}>
+                3 - Staff
+              </option>
+            </select>
+          </div>
+          <div class="d-flex justify-content-between">
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Cancel</a>
+            <button type="submit" class="btn btn-primary">Add Employee</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

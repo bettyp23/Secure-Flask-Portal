@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h1 class="h4 mb-3">My Pay Raises</h1>
+    {% if raises %}
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Employee</th>
+            <th scope="col">Pay Raise Date</th>
+            <th scope="col">Raise Amount</th>
+            <th scope="col">Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for raise in raises %}
+          <tr>
+            <td>{{ raise.employee_name }}</td>
+            <td>{{ raise.payraise_date }}</td>
+            <td>{{ raise.raise_amount_display }}</td>
+            <td>{{ raise.comments or "—" }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <p class="mb-0">No raises recorded yet. Try adding a new pay raise.</p>
+    {% endif %}
+    <div class="mt-3">
+      <a href="{{ url_for('home') }}" class="btn btn-secondary">Return home</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
